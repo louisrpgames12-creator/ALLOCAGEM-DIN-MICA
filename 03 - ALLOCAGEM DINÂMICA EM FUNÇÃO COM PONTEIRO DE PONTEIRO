@@ -1,0 +1,39 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+typedef struct {
+    char nome[30];
+    char crm[15];
+    float renda;
+}medicos;
+
+
+void lermedicos(int qtd, medicos **medicos) {
+    int i;
+    *medicos = malloc(qtd * sizeof(**medicos));
+    for(i = 0; i < qtd; i++){
+        printf("ME INFORME O NOME DO MEDICO %d: ", i + 1);
+        scanf(" %29[^\n]", (*medicos + i)->nome);
+        printf("ME INFORME O CRM DO MEDICO %d: ", i + 1);
+        scanf(" %14[^\n]", (*medicos + i)->crm);
+        printf("ME INFORME A RENDA DO MEDICO %d: ", i + 1);
+        scanf(" %f", &(*medicos + i)->renda);
+    }
+    printf("\n");
+    
+    for(i = 0; i < qtd; i++){
+        printf("\tMEDICO %d\n", i + 1);
+        printf("NOME DO MEDICO: %s\n", (*medicos + i)->nome);
+        printf("CRM DO MEDICO: %s\n", (*medicos + i)->crm);
+        printf("RENDA DO MEDICO: %.2f\n", (*medicos + i)->renda);
+    }
+    
+}
+int main() {
+    medicos *medicos;
+    int qtd;
+    printf("ME INFORME A QUANTIDADE DE MEDICOS: ");
+    scanf("%d", &qtd);
+   lermedicos(qtd, &medicos);
+    return 0;
+}
