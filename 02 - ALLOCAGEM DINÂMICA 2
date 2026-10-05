@@ -1,0 +1,28 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+int main() {
+    int qtdnotas, i;
+    float *vet, maior = 0, acumulado = 0, media;
+    
+    printf("ME INFORME A QUANTIDADE DE NOTAS: ");
+    scanf("%d", &qtdnotas);
+    vet = malloc(qtdnotas * sizeof(float));
+
+    for(i = 0; i < qtdnotas; i++) {
+        printf("ME INFORME A NOTA %d:\n", i + 1);
+        scanf("%f", vet + i);
+    }
+    for(i = 0; i < qtdnotas; i++) {
+        printf("NOTA %d:\t%.2f\n", i + 1, *(vet + i));
+        if (*(vet + i) >= 60)
+            printf("\tNOTA %d: APROVADO\n", i + 1);
+        if (*(vet + i) > maior)
+            maior = *(vet + i);
+        acumulado += *(vet + i);   
+    }
+    media = acumulado/qtdnotas;
+    printf("\n");
+    printf("MEDIA: %.2f\nMAIOR NOTA: %.2f", media, maior);
+    return 0;
+}
